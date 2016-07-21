@@ -12,8 +12,8 @@ def index(request):
 	return render (request, 'index.html', context)
 
 
-def peticion_datos(valor):	
-	valor = valor.GET.get('peticion')							# consultamos el valor introducido	
+def peticion_datos(request):	
+	valor = request.GET.get('peticion')							# consultamos el valor introducido	
 	out = check_output(["./bin/matrixMul","cvalue="+valor])		# hacemos los calculos con ese valor
 
 	return HttpResponse(out)

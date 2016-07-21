@@ -10,12 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
 		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'assets/css/ie8.css' %}" /><![endif]--> 
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'assets/css/ie9.css' %}" /><![endif]-->
+		<script src="{% static 'assets/js/jquery.min.js' %}"></script> 
 	</head>
 	<body ng-app="">
-
-
-<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
-
 
 
 		<!-- Header -->
@@ -25,50 +22,65 @@
 					<h1>Servicio Web de Computación con GPU</h1>
 					<p>Servicio en producción </p>
 					<ul class="actions">
-						<li><a href="#one" class="button scrolly">Start</a></li>
+						<li><a href="#1" class="button scrolly">Start</a></li>
 					</ul>
 				</div>
 			</section>
 
 
-		<!-- One -->
-			<section id="one" class="main style1" style="height: 100vh; padding-top: 30px;">
+
+			<section id="1" class="main style1" style="height: 100vh; padding-top: 30px;">
 				<div class="container">
 					<div class="row 150%">
 						<div class="6u 12u$(medium)">
 							<header class="major">
-								<h1 style="margin-bottom:0px;">Servicio de prueba: sumatoria de varios vectores de valor variable y datos del proceso</h1>
+								<h1 style="margin-bottom:0px;">Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h1>
 							</header>
 
 							{% verbatim %}
 
 
 								<script>
-									// Función para recoger el valor introducido por el usuario, hacer la consulta y devovler el resultado en #muestra_resultado
+									// Función para recoger el valor introducido por el usuario, hacer la consulta y devolver el resultado en #muestra_resultado
 									$(function(){
-										$('#boton_peticion').click(function(){
+										$('#boton_peticion').click(function(){	
+
+											$('#icono_espera').css('display','initial');
 											var valor = $('#dato_introducido').text();
-										    $.get('/swgpu/peticion_datos/', {peticion: valor }, function(data){
-											       $('#muestra_resultado').html(data);
-										    });
+
+											$.get('/swgpu/peticion_datos/', {peticion: valor }, function(data){
+
+													var hora_pet = new Date();
+													$('#fecha_peticion').html(hora_pet);
+
+													//window.location="#2";
+
+													$('#ver_resultados').css('display','initial');
+													$('#icono_espera').css('display','none');
+
+											    	$('#muestra_resultado').html(data);
+
+										    });	
 										});
 
 									});
 								</script>
-							  <div style="display:flex;">
-							 	 <input style="width: 50%;" type="text" ng-model="yourValue" placeholder="Valor constante para los vectores">
 
-						      	<button class="special" id="boton_peticion" style="margin: 2px 10px;"> Cálculo con {{yourValue}} </button>
+							  <div style="display:flex;">
+							 	 <input style="width: 50%;" type="number" ng-model="yourValue" placeholder="Valor constante para los vectores" title="Sólo admite números">
+
+						      	<button class="special" id="boton_peticion" ng-disabled="!yourValue" style="margin: 2px 10px;">  Cálculo con {{yourValue}} </button>
 						      </div>
 						      <p id="dato_introducido" style="display:none;"> {{yourValue}} <p>
 								
 							{% endverbatim %}
 							<br>
-						  
-						  <div id="muestra_resultado" style="border: 1px solid black;">
 
-						  </div>
-						  
+						  <a id="ver_resultados" style="display:none;" href="#2" class="scrolly"> Ver resultados </a> 
+						  <br>
+					
+						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" style ="display:none; width: 100px !important;" src="http://www.voki.com/images/ajax-loader.gif" width="100"> </img>
+						
 
 						</div>
 						<div class="6u$ 12u$(medium) important(medium)">
@@ -78,8 +90,39 @@
 				</div>
 			</section>
 
-		<!-- Two -->
-			<section id="two" class="main style2">
+
+			<section id="2" class="main style2" style="height: 100vh;">
+				<div class="container">
+					<div class="row 150%">
+						<div class="6u 12u$(medium)">
+							<ul class="major-icons">
+								<li ><span class="icon style1 major fa-code"></span></li>
+								<li><span class="icon style2 major fa-bolt"></span></li>
+								<li><span class="icon style4 major fa-cog"></span></li>
+								<li><span class="icon style5 major fa-desktop"></span></li>
+							</ul>
+						</div>
+						<div class="6u$ 12u$(medium)">
+							<header class="major">
+								<h2> Resultados obtenidos</h2>
+							</header>
+							<div style="display:flex;">
+								<h3> Fecha de petición: </h3>
+								<div id="fecha_peticion" style="margin: 5px;"> </div>
+							</div>
+
+						  <div id="muestra_resultado" style="border: 1px solid black; background-color: white; color:black;">
+						  </div>
+
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
+			<section id="2_1" class="main style1">
 				<div class="container">
 					<div class="row 150%">
 						<div class="6u 12u$(medium)">
@@ -105,8 +148,34 @@
 				</div>
 			</section>
 
-		<!-- Three -->
-			<section id="three" class="main style1 special">
+			<section id="3" class="main style2">
+				<div class="container">
+					<div class="row 150%">
+						<div class="6u 12u$(medium)">
+							<ul class="major-icons">
+								<li ><span class="icon style1 major fa-code"></span></li>
+								<li><span class="icon style2 major fa-bolt"></span></li>
+								<li><span class="icon style3 major fa-camera-retro"></span></li>
+								<li><span class="icon style4 major fa-cog"></span></li>
+								<li><span class="icon style5 major fa-desktop"></span></li>
+								<li><span class="icon style6 major fa-calendar"></span></li>
+							</ul>
+						</div>
+						<div class="6u$ 12u$(medium)">
+							<header class="major">
+								<h2> Lorem ipsum dolor adipiscing<br />
+								amet dolor consequat</h2>
+							</header>
+							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
+							<p>Blandit faucibus proin. Ac aliquam integer adipiscing enim non praesent vis commodo nunc phasellus cubilia ac risus accumsan. Accumsan blandit. Lobortis phasellus non lobortis dit varius mi varius accumsan lobortis. Blandit ante aliquam lacinia lorem lobortis semper morbi col faucibus vitae integer placerat accumsan orci eu mi odio tempus adipiscing adipiscing adipiscing curae consequat feugiat etiam dolore.</p>
+							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<section id="4" class="main style1 special">
 				<div class="container">
 					<header class="major">
 						<h2>Adipiscing amet consequat</h2>
@@ -141,8 +210,8 @@
 				</div>
 			</section>
 
-		<!-- Four -->
-			<section id="four" class="main style2 special">
+
+			<section id="5" class="main style2 special">
 				<div class="container">
 					<header class="major">
 						<h2>Ipsum feugiat consequat?</h2>
@@ -489,7 +558,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</section>
 
 		<!-- Scripts -->
-			<script src="{% static 'assets/js/jquery.min.js' %}"></script> 
 			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script> 
 			<script src="{% static 'assets/js/skel.min.js' %}"></script> 
 			<script src="{% static 'assets/js/util.js' %}"></script>
