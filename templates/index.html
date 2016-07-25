@@ -11,8 +11,10 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'assets/css/ie8.css' %}" /><![endif]--> 
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'assets/css/ie9.css' %}" /><![endif]-->
 		<script src="{% static 'assets/js/jquery.min.js' %}"></script> 
+		 
+		
 	</head>
-	<body ng-app="">
+	<body ng-app="myApp" ng-controller="myController">
 
 
 		<!-- Header -->
@@ -40,46 +42,20 @@
 							{% verbatim %}
 
 
-								<script>
-									// Función para recoger el valor introducido por el usuario, hacer la consulta y devolver el resultado en #muestra_resultado
-									$(function(){
-										$('#boton_peticion').click(function(){	
-
-											$('#icono_espera').css('display','initial');
-											var valor = $('#dato_introducido').text();
-
-											$.get('/swgpu/peticion_datos/', {peticion: valor }, function(data){
-
-													var hora_pet = new Date();
-													$('#fecha_peticion').html(hora_pet);
-
-													//window.location="#2";
-
-													$('#ver_resultados').css('display','initial');
-													$('#icono_espera').css('display','none');
-
-											    	$('#muestra_resultado').html(data);
-
-										    });	
-										});
-
-									});
-								</script>
-
 							  <div style="display:flex;">
 							 	 <input style="width: 50%;" type="number" ng-model="yourValue" placeholder="Valor constante para los vectores" title="Sólo admite números">
 
-						      	<button class="special" id="boton_peticion" ng-disabled="!yourValue" style="margin: 2px 10px;">  Cálculo con {{yourValue}} </button>
+						      	<button class="special" id="boton_peticion" ng-disabled="!yourValue" ng-click="peticionCalculo(yourValue)" style="margin: 2px 10px;">  Cálculo con {{yourValue}} </button>
 						      </div>
-						      <p id="dato_introducido" style="display:none;"> {{yourValue}} <p>
+
 								
 							{% endverbatim %}
 							<br>
 
 						  <a id="ver_resultados" style="display:none;" href="#2" class="scrolly"> Ver resultados </a> 
 						  <br>
-					
-						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" style ="display:none; width: 100px !important;" src="http://www.voki.com/images/ajax-loader.gif" width="100"> </img>
+
+						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" style ="display:none; position: fixed; top: 50vh; right: 50vw; width: 100px !important;" src="{% static 'images/loader.gif' %}" width="100"> </img>
 						
 
 						</div>
@@ -564,6 +540,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<!--[if lte IE 8]><script src="{% static 'assets/js/ie/respond.min.js' %}"></script><![endif]-->   
 			<script src="{% static 'assets/js/main.js' %}"></script>
 			<script src="{% static 'assets/js/angular.min.js' %}"></script> 
+			<script src="{% static 'assets/js/controller.js' %}"></script>
 
 
 	</body>
