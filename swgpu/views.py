@@ -14,7 +14,7 @@ def index(request):
 
 def peticion_datos(request):	
 	valor = request.GET.get('peticion')							# consultamos el valor introducido	
-	out = check_output(["./bin/matrixMul","cvalue="+valor])		# hacemos los calculos con ese valor
+	out = check_output(["./bin/matrixSum","cvalue="+valor])		# hacemos los calculos con ese valor
 
 	return HttpResponse(out)
 

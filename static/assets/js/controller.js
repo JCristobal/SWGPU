@@ -2,7 +2,7 @@ var app = angular.module("myApp", []);
 
 
 app.controller("myController", function($scope) { 
-
+	
 	// Función para recoger el valor introducido por el usuario, hacer la consulta y devolver el resultado en #muestra_resultado
 	$scope.peticionCalculo = function(valor) { 		
 		// Modificamos el maquetado con jQuery y hacemos la petición con el valor introducido
@@ -18,8 +18,21 @@ app.controller("myController", function($scope) {
 				$('#ver_resultados').css('display','initial');
 				$('#icono_espera').css('display','none');
 				$('body').css('opacity','1');
-				// Mostramos los resultados por pantalla
-		    	$('#muestra_resultado').html(data);
+		    	// Parseamos los datos
+		    	var datos = JSON.parse(data);
+		    	// Preparamos los datos para mostrarlos
+		    	var muestra_datos="<strong>"+JSON.stringify(datos.calculo.nombre)+"</strong> <br>"
+											+JSON.stringify(datos.calculo.dispositivo)+"<br>"
+											+JSON.stringify(datos.calculo.info_matriz)+"<br>"
+											+"Performance: "+JSON.stringify(datos.calculo.datos_computo.performance)+"<br>"
+											+"Time: "+JSON.stringify(datos.calculo.datos_computo.time)+"<br>"
+											+"Size: "+JSON.stringify(datos.calculo.datos_computo.size)+"<br>"
+											+"Workgroup size: "+JSON.stringify(datos.calculo.datos_computo.workgroupSize)
+				muestra_datos=muestra_datos.replace(/\"/g,"");							
+				// Mostramos algunos datos por pantalla
+				$('#muestra_datos').html(muestra_datos);
+		    	// Mostramos los resultados por pantalla
+		    	$('#muestra_resultado').html(JSON.stringify(datos.calculo.resultados));
 	    });	
 
     };
