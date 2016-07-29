@@ -6,10 +6,18 @@
 
 h1{
 	margin-bottom:0px;
+	text-align: center;
+}
+#serv_1, #serv_2{
+	border-top: 2px solid black;	
+}
+
+.img .fit{
+	width: 80%;
 }
 
 .style1{
-	height: 100vh; 
+	min-height: 100vh; 
 	padding-top: 30px;
 }
 .entrada_datos{
@@ -26,10 +34,33 @@ h1{
 }
 #icono_espera{
 	display:none; 
-	position: fixed; 
+	position: fixed;
 	top: 50vh; 
 	right: 50vw; 
 	width: 100px !important;
+}
+
+label{
+	margin: 1em 0 0 0;
+}
+.entrada_datos_defecto_ackley{
+	display:flex;
+}
+.entrada_datos_defecto_ackley div{
+	width: 33%;
+}
+.entrada_datos_defecto_ackley input{
+	width: 200px;
+}
+.entrada_vector_ackley{
+	text-align: center;
+}
+.entrada_vector_ackley input{
+	width: 90%;
+}
+
+#datos_ackley_a_calcular{
+
 }
 
 .style2{

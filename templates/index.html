@@ -25,19 +25,42 @@
 					<h1>Servicio Web de Computación con GPU</h1>
 					<p>Servicio en producción </p>
 					<ul class="actions">
-						<li><a href="#1" class="button scrolly">Start</a></li>
+						<li><a href="#menu" class="button scrolly">Start</a></li>
 					</ul>
 				</div>
 			</section>
 
 			
 
-			<section id="1" class="main style1">
+			<section id="menu" class="main style1">
+				<div class="container">
+					<div class="row 150%">
+						<div class="6u 12u$(medium)">
+
+							<header class="major">
+								<ul>
+									<h1> Servicios disponibles</h1>
+									<li><a href="#serv_1" class="scrolly">	<h2>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h2> </a> </li>
+									<li><a href="#serv_2" class="scrolly">	<h2> Función Ackley </h2> </a> </li>
+								</ul>
+							</header>					
+				
+						</div>
+						<div class="6u$ 12u$(medium) important(medium)">
+							<span class="image fit"><img src="{% static 'images/nvidia-cuda.jpg' %}" alt="" /></span>						
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="serv_1" class="main style1">
 				<div class="container">
 					<div class="row 150%">
 						<div class="6u 12u$(medium)">
 							<header class="major">
-								<h1>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h1>
+
+								<h1>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h1> 
+
 							</header>
 
 							
@@ -55,7 +78,7 @@
 
 						  <div id="muestra_datos"> </div>
 
-						  <a id="ver_resultados" href="#2" class="scrolly"> <strong> Ver resultados </strong></a> 
+						  <a id="ver_resultados" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
 						  
 
 						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
@@ -69,8 +92,68 @@
 				</div>
 			</section>
 
+			<section id="serv_2" class="main style1">
+				<div class="container">
+					<div class="row 150%">
+						<div class="6u 12u$(medium)">
+							<header class="major">
 
-			<section id="2" class="main style2">
+								<h1> Función Ackley </h1> 
+
+							</header>
+
+							
+						{% verbatim %}
+
+								<div class="entrada_datos_ackley">
+									<div class="entrada_datos_defecto_ackley">
+										<div>
+											<label> Valor para el parámetro a </label>
+											<input type="number" ng-model="valueA" placeholder="" title="por defecto 20">
+										</div>	 
+										<div>
+											<label> Valor para el parámetro b </label>
+											<input type="number" ng-model="valueB" placeholder="" title="por defecto 0.2">
+										</div>
+										<div>
+											<label> Valor para el parámetro c </label>
+											<input type="number" ng-model="valueC" placeholder="" title="por defecto 2*pi">
+										</div>
+									</div> <!-- fin .entrada_datos_defecto_ackley -->
+									<div class="entrada_vector_ackley">
+										<label> Vector a evaluar </label>
+										<input type="number" ng-model="value" placeholder="Vector a evaluar (separado por 'comas')">
+									</div>
+								</div> <!-- fin .entrada_datos_ackley -->
+
+							 	 <div id="datos_ackley_a_calcular">
+							 		 Realizar cálculo para a={{valueA}}, b={{valueB}}, c{{valueC}}= y el vector {{value}}
+							 	 </div>
+
+						      	<button class="special" id="boton_peticion" ng-disabled="!value" ng-click="peticionAckley(value, valueA, valueB, valueC)" >  Calcular para el vector introducido  </button>
+						      
+						{% endverbatim %}
+								
+							
+							<br>
+
+						  <div id="muestra_datos_ackley"> </div>
+
+						  <a id="ver_resultados_ackley" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
+						  
+
+						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
+						
+
+						</div>
+						<div class="6u$ 12u$(medium) important(medium)">
+							<span class="image fit"><img src="{% static 'images/ackley.png' %}" alt="" /></span>						
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="resultados" class="main style2">
 				<div class="container">
 					<div class="row 150%">
 						<div class="6u 12u$(medium)">
