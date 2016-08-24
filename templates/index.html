@@ -81,7 +81,7 @@
 						  <a id="ver_resultados" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
 						  
 
-						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
+						  	<img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
 						
 
 						</div>
@@ -109,28 +109,63 @@
 									<div class="entrada_datos_defecto_ackley">
 										<div>
 											<label> Valor para el parámetro a </label>
-											<input type="number" ng-model="valueA" placeholder="" title="por defecto 20">
+											<input type="number" ng-model="valueA" placeholder="20" title="por defecto 20">
 										</div>	 
 										<div>
 											<label> Valor para el parámetro b </label>
-											<input type="number" ng-model="valueB" placeholder="" title="por defecto 0.2">
+											<input type="number" ng-model="valueB" placeholder="0.2" title="por defecto 0.2">
 										</div>
 										<div>
 											<label> Valor para el parámetro c </label>
-											<input type="number" ng-model="valueC" placeholder="" title="por defecto 2*pi">
+											<input type="number" ng-model="valueC" placeholder="2*&pi;" title="por defecto 2*pi">
 										</div>
 									</div> <!-- fin .entrada_datos_defecto_ackley -->
-									<div class="entrada_vector_ackley">
-										<label> Vector a evaluar </label>
-										<input type="number" ng-model="value" placeholder="Vector a evaluar (separado por 'comas')">
-									</div>
+
+									<div class="entrada_datos_defecto_ag">
+										<div class="entrada_tam_pobl_ag">
+											<label> Tamaño de la población </label>
+											<input type="number" ng-model="population_size" placeholder="por defecto 50">
+										</div> <!-- fin .entrada_tam_pobl_ag -->
+
+										<div class="entrada_n_vars_ag">
+											<label> Número de variables </label>
+											<input type="number" ng-model="n_vars" placeholder="por defecto 10">
+										</div> <!-- fin .entrada_n_vars_ag -->
+
+										<div class="entrada_max_gen_ag">
+											<label> Número de generaciones </label>
+											<input type="number" ng-model="max_gen" placeholder="por defecto 100">
+										</div> <!-- fin .entrada_mag_gen_ag -->
+
+										<div class="entrada_p_mutation_ag">
+											<label> Probabilidad de mutación </label>
+											<input type="number" ng-model="p_mutation" placeholder="por defecto 0.15">
+										</div> <!-- fin .entrada_p_mutation_ag -->
+
+										<div class="entrada_p_crossover_ag">
+											<label> Probabilidad de cruce </label>
+											<input type="number" ng-model="p_crossover" placeholder="por defecto 0.8">
+										</div> <!-- fin .entrada_p_crossover_ag -->
+
+										<div class="entrada_valor_min_ag">
+											<label> Valor mínimo </label>
+											<input type="number" ng-model="min" placeholder="por defecto -32.768">
+										</div> <!-- fin .entrada_valor_min_ag -->
+
+										<div class="entrada_valor_max_ag">
+											<label> Valor máximo </label>
+											<input type="number" ng-model="max" placeholder="por defecto 32.768">
+										</div> <!-- fin .entrada_valor_max_ag -->
+
+									</div> <!-- fin .entrada_datos_defecto_ag -->
+
 								</div> <!-- fin .entrada_datos_ackley -->
 
 							 	 <div id="datos_ackley_a_calcular">
-							 		 Realizar cálculo para a={{valueA}}, b={{valueB}}, c{{valueC}}= y el vector {{value}}
+							 		<p> Evaluar con Ackley mediante a={{valueA}}, b={{valueB}}, c={{valueC}} </p>						 		 
 							 	 </div>
 
-						      	<button class="special" id="boton_peticion" ng-disabled="!value" ng-click="peticionAckley(value, valueA, valueB, valueC)" >  Calcular para el vector introducido  </button>
+						      	<button class="special" id="boton_peticion"  ng-click="peticionAckley(valueA, valueB, valueC, max_gen, min, max, p_mutation, p_crossover, population_size, n_vars)" >  Realizar algoritmo genético  </button>
 						      
 						{% endverbatim %}
 								
@@ -142,7 +177,7 @@
 						  <a id="ver_resultados_ackley" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
 						  
 
-						  	<img id="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
+						  	<img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
 						
 
 						</div>

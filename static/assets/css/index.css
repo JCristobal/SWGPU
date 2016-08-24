@@ -32,7 +32,7 @@ h1{
 #ver_resultados{
 	display:none;
 }
-#icono_espera{
+.icono_espera{
 	display:none; 
 	position: fixed;
 	top: 50vh; 
@@ -59,8 +59,16 @@ label{
 	width: 90%;
 }
 
+.entrada_datos_defecto_ag{
+
+}
+
 #datos_ackley_a_calcular{
 
+}
+
+#ver_resultados_ackley{
+	display:none;
 }
 
 .style2{
