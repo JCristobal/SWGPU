@@ -20,69 +20,82 @@ h1{
 	min-height: 100vh; 
 	padding-top: 30px;
 }
+.style2{
+	height: 100vh;
+}
+
+
+/* */
 .entrada_datos{
 	display:flex;
 }
 .entrada_datos input{
-	width: 50%;
-}
-#boton_peticion{
-	margin: 2px 10px;
+	width: 70%;
 }
 #ver_resultados{
 	display:none;
 }
+/*  */
+
+/* Botón de petición de servicio*/
+.peticion{
+	text-align: center;
+}
+#boton_peticion{
+	margin: 2px 10px;
+}
+
+/* Imagen de espera mientra se realiza el servicio */
 .icono_espera{
-	display:none; 
+	display:none;
 	position: fixed;
 	top: 50vh; 
 	right: 50vw; 
 	width: 100px !important;
 }
-
+/* Etiqueta para la entrada de datos*/
 label{
 	margin: 1em 0 0 0;
 }
-.entrada_datos_defecto_ackley{
+
+/* Entrada de datos Ackley*/
+.entrada_datos_ackley{
 	display:flex;
+	text-align: center;
+	margin-bottom: 50px;
 }
-.entrada_datos_defecto_ackley div{
-	width: 33%;
+.entrada_datos_ackley div{
+	width: 30vw;
+}
+.entrada_datos_defecto_ackley{
+	border-left: 1px solid #555;
+    padding-left: 10px;
+    margin-left: 1px;
 }
 .entrada_datos_defecto_ackley input{
 	width: 200px;
 }
-.entrada_vector_ackley{
-	text-align: center;
-}
-.entrada_vector_ackley input{
-	width: 90%;
-}
 
-.entrada_datos_defecto_ag{
-
-}
-
-#datos_ackley_a_calcular{
-
-}
-
+/* Botón o texto que indica que el servicio se ha realizado */
 #ver_resultados_ackley{
 	display:none;
 }
 
-.style2{
-	height: 100vh;
-}
 
+/* Fecha sobre los resultados */
 .fecha_peticion{
 	display:flex;
 }
 #fecha_peticion{
 	margin: 5px;
 }
+
+/* Resultados del servicio */
 #muestra_resultado{
 	border: 1px solid black; 
 	background-color: white; 
 	color:black;
+}
+#resultados h2{
+	text-align: center;
 }
