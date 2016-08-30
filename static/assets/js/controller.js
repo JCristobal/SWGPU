@@ -43,10 +43,13 @@ app.controller("myController", function($scope, $http) {
 	$scope.valueA=20;
 	$scope.valueB=0.2;
 	$scope.valueC=2*Math.PI;
+	$scope.valueARastrigin=10;
 
 	$scope.max_gen=100;
 	$scope.min=-32.768;
 	$scope.max=32.768;
+	$scope.minR=-5.12;
+	$scope.maxR=5.12;
 	$scope.p_mutation=0.15;
 	$scope.population_size=50;
 	$scope.p_crossover=0.8;
@@ -78,14 +81,36 @@ app.controller("myController", function($scope, $http) {
 			$('.icono_espera').css('display','none');
 			$('body').css('opacity','1');
 	
-			// Mostramos algunos datos por pantalla
-			var muestra_datos=JSON.stringify(response.data.calculo.info_input)+"<br>"
-								+JSON.stringify(response.data.calculo.datos_computo)+"<br>";											
-			
-			$('#muestra_datos_ackley').html(muestra_datos);
+			// Variable para mostrar las variables
+			var variables = "";
+			for(var i=0;i<n_vars;i++){
+				variables = variables +" Variable "+i+": "+ response.data.calculo.resultado_AG.values[i]+"<br>";
+			}
+			// Variable para mostrarlo en forma de "array"
+			var listaVariables = "[";
+			for(var i=0;i<n_vars-1;i++){
+				listaVariables = listaVariables + response.data.calculo.resultado_AG.values[i]+", ";
+			}
+			listaVariables = listaVariables + response.data.calculo.resultado_AG.values[n_vars-1]+"]";
 
 	    	// Mostramos los resultados por pantalla
-	    	$('#muestra_resultado').html(JSON.stringify(response.data.calculo.resultado_AG));
+			$('#muestra_resultado').html("<strong>"+JSON.stringify(response.data.calculo.nombre).replace(/\"/g,"")+" </strong><br>"
+										+JSON.stringify(response.data.calculo.dispositivo).replace(/\"/g,"").replace("GPU Device 0","Device")+"<br>"
+										+"Performance: "+JSON.stringify(response.data.calculo.datos_computo.performance)+"<br>"
+										+"Time: "+JSON.stringify(response.data.calculo.datos_computo.time)+"<br>"
+										+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
+										+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
+										+"<strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations)+"<br>"
+										+"Valor mínimo:"+JSON.stringify(response.data.calculo.info_input.minimal_value)+"<br>"
+										+"Valor máximo:"+JSON.stringify(response.data.calculo.info_input.maximum_value)+"<br>"
+										+"Con :"+JSON.stringify(response.data.calculo.info_input.n_vars)+" variables <br>"
+										+"Probabilidad de mutación:"+JSON.stringify(response.data.calculo.info_input.p_mutation)+"% <br>"
+										+"Probabilidad de cruce:"+JSON.stringify(response.data.calculo.info_input.p_crossover)+"% <br>"
+										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size)+" <br>"
+										+"Con las variables a: "+JSON.stringify(response.data.calculo.info_input.a)+" b:"+JSON.stringify(response.data.calculo.info_input.b)+" c:"+JSON.stringify(response.data.calculo.info_input.c)+" propias de la función de optmización Ackley<br>"
+										+"<br>Tras "+JSON.stringify(response.data.calculo.resultado_AG.generations).replace(/\"/g,"")+" generaciones con el mejor 'fitness' de "+JSON.stringify(response.data.calculo.resultado_AG.best_fitness).replace(/\"/g,"")+" se obtienen las <strong>variables:</strong> <br>"+variables +"<br>"
+										+"<strong>Array con las variables: </strong>"+listaVariables );
+
 
 		  }, function errorCallback(response) {
 

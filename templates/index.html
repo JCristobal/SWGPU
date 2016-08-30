@@ -34,64 +34,32 @@
 
 			<section id="menu" class="main style1">
 				<div class="container">
+					<h1> Servicios disponibles</h1>
 					<div class="row 150%">
-						<div class="6u 12u$(medium)">
 
-							<header class="major">
-								<ul>
-									<h1> Servicios disponibles</h1>
-									<li><a href="#serv_1" class="scrolly">	<h2>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h2> </a> </li>
-									<li><a href="#serv_2" class="scrolly">	<h2> Algoritmo genético evaluado mediante Ackley </h2> </a> </li>
-								</ul>
-							</header>					
 				
+
+						<div class="6u 12u$(medium)">		
+
+							<a href="#serv_ackley" class="scrolly">	<h2> Algoritmo genético evaluado mediante <strong>Ackley</strong> </h2> </a>
+					
+							<span class="image fit"><img src="{% static 'images/ackley.png' %}" alt="" /></span>
+
 						</div>
+
 						<div class="6u$ 12u$(medium) important(medium)">
-							<span class="image fit"><img src="{% static 'images/nvidia-cuda.jpg' %}" alt="" /></span>						
+
+							<a href="#serv_rastrigin" class="scrolly">	<h2>Servicio de prueba.('Rastrigin' en proceso)</h2> </a>
+
+							<span class="image fit"><img src="{% static 'images/rastrigin.png' %}" alt="" /></span>						
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="serv_1" class="main style1">
-				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<header class="major">
 
-								<h1>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h1> 
 
-							</header>
-
-							
-						{% verbatim %}
-
-							  <div class="entrada_datos">
-							 	 <input type="number" ng-model="yourValue" placeholder="Valor constante para los vectores" title="Sólo admite números">
-
-						      	<button class="special" id="boton_peticion" ng-disabled="!yourValue" ng-click="peticionCalculo(yourValue)" >  Cálculo con {{yourValue}} </button>
-						      </div>
-						{% endverbatim %}
-								
-							
-
-						<div id="muestra_datos"> </div>
-
-						<a id="ver_resultados" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
-						  
-
-						<img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
-						
-
-						</div>
-						<div class="6u$ 12u$(medium) important(medium)">
-							<span class="image fit"><img src="{% static 'images/nvidia-cuda.jpg' %}" alt="" /></span>						
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section id="serv_2" class="main style1">
+			<section id="serv_ackley" class="main style1">
 				<div class="container">
 					<div class="row 150%">
 						<div class="12u 12u$(medium)">
@@ -168,9 +136,7 @@
 						      
 						{% endverbatim %}
 								
-						  <div id="muestra_datos_ackley"> </div>
-
-						  <a id="ver_resultados_ackley" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 						 
+						  <div class="peticion"> <button class="boton_resultado" id="ver_resultados_ackley"> <a  href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> </button> </div>					 
 
 						  <img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
 						
@@ -181,7 +147,48 @@
 						</div> -->
 					</div>
 				</div>
-			</section>
+			</section>  <!-- fin #serv_ackley-->
+
+			<section id="serv_rastrigin" class="main style1">
+				<div class="container">
+					<div class="row 150%">
+						<div class="6u 12u$(medium)">
+							<header class="major">
+
+								<h1>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h1> 
+
+							</header>
+
+							
+						{% verbatim %}
+
+							  <div class="entrada_datos">
+							 	 <input type="number" ng-model="yourValue" placeholder="Valor constante para los vectores" title="Sólo admite números">
+
+						      	<button class="special" id="boton_peticion" ng-disabled="!yourValue" ng-click="peticionCalculo(yourValue)" >  Cálculo con {{yourValue}} </button>
+						      </div>
+						{% endverbatim %}
+								
+							
+
+						<div id="muestra_datos"> </div>
+
+						<a id="ver_resultados" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
+						  
+
+						<img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
+						
+
+						</div>
+						<div class="6u$ 12u$(medium) important(medium)">
+							<span class="image fit"><img src="{% static 'images/nvidia-cuda.jpg' %}" alt="" /></span>						
+						</div>
+					</div>
+				</div>
+			</section> <!-- fin #serv_rastrigin -->
+
+
+
 
 			<section id="resultados" class="main style2">
 				<div class="container">
