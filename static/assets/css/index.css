@@ -77,7 +77,7 @@ label{
 }
 
 /* Botón o texto que indica que el servicio se ha realizado */
-#ver_resultados_ackley{
+#ver_resultados_ackley, #ver_resultados_rastrigin{
 	display:none;
 }
 .boton_resultado{

@@ -13,12 +13,6 @@ def index(request):
 	return render (request, 'index.html', context)
 
 
-def peticion_datos(request):	
-	valor = request.GET.get('peticion')							# consultamos el valor introducido	
-	out = check_output(["./bin/matrixSum","cvalue="+valor])		# hacemos los calculos con ese valor
-
-	return HttpResponse(out)
-
 
 @csrf_exempt
 def peticion_ackley(request):	
@@ -36,7 +30,25 @@ def peticion_ackley(request):
 	pSize = data_operation.get('populationSize')
 	nV = data_operation.get('nVars')
 
-	out = check_output(["./bin/geneticAlgorithmAckley","-a={}".format(valora),"-b={}".format(valorb),"-c={}".format(valorc),"-max_gen={}".format(maxGen),"-min={}".format(vMin),"-max={}".format(vMax),"-p_mutation={}".format(probMutation),"-p_crossover={}".format(probCrossover),"-population_size={}".format(pSize),"-n_vars={}".format(nV) ])		
+	out = check_output(["./bin/geneticAlgorithm","-a={}".format(valora),"-b={}".format(valorb),"-c={}".format(valorc),"-max_gen={}".format(maxGen),"-min={}".format(vMin),"-max={}".format(vMax),"-p_mutation={}".format(probMutation),"-p_crossover={}".format(probCrossover),"-population_size={}".format(pSize),"-n_vars={}".format(nV) ])		
 
 	return HttpResponse(out)
 
+
+@csrf_exempt
+def peticion_rastrigin(request):	
+	
+	data_operation=json.loads(request.body)
+
+	valorarastrigin = data_operation.get('valorARastrigin')						# consultamos los valores introducidos	
+	maxGen = data_operation.get('maxgen')
+	vMin = data_operation.get('valorMin')
+	vMax = data_operation.get('valorMax')
+	probMutation = data_operation.get('pMutation')
+	probCrossover = data_operation.get('pCrossover')
+	pSize = data_operation.get('populationSize')
+	nV = data_operation.get('nVars')
+
+	out = check_output(["./bin/geneticAlgorithm","-rastrigin=1", "-A_R={}".format(valorarastrigin), "-max_gen={}".format(maxGen),"-min={}".format(vMin),"-max={}".format(vMax),"-p_mutation={}".format(probMutation),"-p_crossover={}".format(probCrossover),"-population_size={}".format(pSize),"-n_vars={}".format(nV) ])		
+
+	return HttpResponse(out)

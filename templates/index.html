@@ -41,7 +41,7 @@
 
 						<div class="6u 12u$(medium)">		
 
-							<a href="#serv_ackley" class="scrolly">	<h2> Algoritmo genético evaluado mediante <strong>Ackley</strong> </h2> </a>
+							<a href="#serv_ackley" class="scrolly" title="Ir hacia formulario para lanzar algoritmo">	<h2> Algoritmo genético evaluado mediante <strong>Ackley</strong> </h2> </a>
 					
 							<span class="image fit"><img src="{% static 'images/ackley.png' %}" alt="" /></span>
 
@@ -49,7 +49,7 @@
 
 						<div class="6u$ 12u$(medium) important(medium)">
 
-							<a href="#serv_rastrigin" class="scrolly">	<h2>Servicio de prueba.('Rastrigin' en proceso)</h2> </a>
+							<a href="#serv_rastrigin" class="scrolly" title="Ir hacia formulario para lanzar algoritmo">	<h2>Algoritmo genético evaluado mediante <strong>Rastrigin</strong></h2> </a>
 
 							<span class="image fit"><img src="{% static 'images/rastrigin.png' %}" alt="" /></span>						
 						</div>
@@ -152,37 +152,80 @@
 			<section id="serv_rastrigin" class="main style1">
 				<div class="container">
 					<div class="row 150%">
-						<div class="6u 12u$(medium)">
+						<div class="12u 12u$(medium)">
 							<header class="major">
 
-								<h1>Servicio de prueba: sumatoria de varios vectores de valor constante y datos del proceso</h1> 
+								<h1> Algoritmo genético evaluado mediante Rastrigin </h1> 
 
 							</header>
 
 							
 						{% verbatim %}
 
-							  <div class="entrada_datos">
-							 	 <input type="number" ng-model="yourValue" placeholder="Valor constante para los vectores" title="Sólo admite números">
+								<div class="entrada_datos_ackley">								
+									<div class="entrada_datos_defecto_ag">										 
+										<div class="entrada_tam_pobl_ag">
+											<label> Tamaño de la población </label>
+											<input type="number" ng-model="population_size" placeholder="por defecto 50">
+										</div> <!-- fin .entrada_tam_pobl_ag -->
 
-						      	<button class="special" id="boton_peticion" ng-disabled="!yourValue" ng-click="peticionCalculo(yourValue)" >  Cálculo con {{yourValue}} </button>
-						      </div>
+										<div class="entrada_n_vars_ag">
+											<label> Número de variables </label>
+											<input type="number" ng-model="n_vars" placeholder="por defecto 10">
+										</div> <!-- fin .entrada_n_vars_ag -->
+
+										<div class="entrada_valor_min_ag">
+											<label> Valor mínimo </label>
+											<input type="number" ng-model="minR" placeholder="por defecto -5.12">
+										</div> <!-- fin .entrada_valor_min_ag -->
+
+										<div class="entrada_valor_max_ag">
+											<label> Valor máximo </label>
+											<input type="number" ng-model="maxR" placeholder="por defecto 5.12">
+										</div> <!-- fin .entrada_valor_max_ag -->
+
+									</div> <!-- fin .entrada_datos_defecto_ag -->
+									<div class="entrada_datos_defecto_ag">
+									
+										<div class="entrada_max_gen_ag">
+											<label> Número de generaciones </label>
+											<input type="number" ng-model="max_gen" placeholder="por defecto 100">
+										</div> <!-- fin .entrada_mag_gen_ag -->
+
+										<div class="entrada_p_mutation_ag">
+											<label> Probabilidad de mutación </label>
+											<input type="number" ng-model="p_mutation" placeholder="por defecto 0.15">
+										</div> <!-- fin .entrada_p_mutation_ag -->
+
+										<div class="entrada_p_crossover_ag">
+											<label> Probabilidad de cruce </label>
+											<input type="number" ng-model="p_crossover" placeholder="por defecto 0.8">
+										</div> <!-- fin .entrada_p_crossover_ag -->
+									
+									</div> <!-- fin .entrada_datos_defecto_ag -->
+
+									<div class="entrada_datos_defecto_ackley">
+										<strong> <p>  Valores para la función de optimización Rastrigin </p> </strong>
+										<div>
+											<label> Valor para el parámetro A </label>
+											<input type="number" ng-model="valueARastrigin" placeholder="10" title="por defecto 10">
+										</div>	 
+	
+									</div> <!-- fin .entrada_datos_defecto_ackley -->
+
+								</div> <!-- fin .entrada_datos_ackley -->
+
+						      	<div class="peticion"> <button class="special" id="boton_peticion"  ng-click="peticionRastrigin(valueARastrigin, max_gen, minR, maxR, p_mutation, p_crossover, population_size, n_vars)" >  Realizar algoritmo genético  </button> </div>
+						      
 						{% endverbatim %}
 								
-							
+						  <div class="peticion"> <button class="boton_resultado" id="ver_resultados_rastrigin"> <a  href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> </button> </div>					 
 
-						<div id="muestra_datos"> </div>
-
-						<a id="ver_resultados" href="#resultados" class="scrolly"> <strong> Ver resultados </strong></a> 
-						  
-
-						<img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
+						  <img class="icono_espera" class="6u$ 12u$(medium) important(medium)" src="{% static 'images/loader.gif' %}" width="100"> </img>
 						
 
 						</div>
-						<div class="6u$ 12u$(medium) important(medium)">
-							<span class="image fit"><img src="{% static 'images/nvidia-cuda.jpg' %}" alt="" /></span>						
-						</div>
+
 					</div>
 				</div>
 			</section> <!-- fin #serv_rastrigin -->
