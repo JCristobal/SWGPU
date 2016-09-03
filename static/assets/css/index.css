@@ -7,9 +7,14 @@
 h1{
 	margin-bottom:0px;
 	text-align: center;
+	margin-top: 25px;
+}
+#menu{
+	border-bottom: 2px solid grey;
 }
 #serv_rastrigin, #serv_ackley{
 	border-top: 2px solid black;	
+	display: none;
 }
 
 .img .fit{
@@ -21,25 +26,14 @@ h1{
 	padding-top: 30px;
 }
 .style2{
-	height: 100vh;
+	padding-bottom: 80px;
 }
 
-
-/* */
-.entrada_datos{
-	display:flex;
-}
-.entrada_datos input{
-	width: 70%;
-}
-#ver_resultados{
-	display:none;
-}
-/*  */
 
 /* Botón de petición de servicio*/
 .peticion{
 	text-align: center;
+	margin: 20px 0px;
 }
 #boton_peticion{
 	margin: 2px 10px;
@@ -98,7 +92,7 @@ label{
 	background-color: white; 
 	color:black;
 	padding: 10px;
-	word-wrap: break-word
+	word-wrap: break-word;
 }
 #muestra_resultado strong{
 	color: black;
@@ -106,4 +100,13 @@ label{
 }
 #resultados h2{
 	text-align: center;
+}
+/* Tabla con las variables del resultado */
+.table-wrapper{
+	width: 50%;
+    margin: 10px auto;
+    text-align: center
+}
+.table-wrapper th{
+    text-align: center
 }
