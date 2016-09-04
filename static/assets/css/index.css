@@ -52,6 +52,12 @@ label{
 	margin: 1em 0 0 0;
 }
 
+/* Entrada de datos para el algoritmo genético */
+.entrada_datos_defecto_ag span{
+	color: red;
+}
+
+
 /* Entrada de datos Ackley*/
 .entrada_datos_ackley{
 	display:flex;

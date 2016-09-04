@@ -22,6 +22,7 @@ app.controller("myController", function($scope, $http) {
 		$('#muestra_resultado').html("Lance un algoritmo para ver sus resultados");
 	}
 
+
 	$scope.valueA=20;
 	$scope.valueB=0.2;
 	$scope.valueC=2*Math.PI;

@@ -37,8 +37,6 @@
 					<h1> Servicios disponibles</h1>
 					<div class="row 150%">
 
-				
-
 						<div class="6u 12u$(medium)" ng-click="muestra_ackley()">		
 
 							<a href="#serv_ackley" class="scrolly" title="Ir hacia formulario para lanzar algoritmo">	<h2>  Algoritmo genético evaluado mediante <strong>Ackley</strong> </h2> </a>
@@ -79,10 +77,15 @@
 											<input type="number" ng-model="population_size" placeholder="por defecto 50">
 										</div> <!-- fin .entrada_tam_pobl_ag -->
 
+										<span ng-show="population_size>=10000">Población debe ser menor que 10000</span>
+
 										<div class="entrada_n_vars_ag">
 											<label> Tamaño del cromosoma </label>
 											<input type="number" ng-model="n_vars" placeholder="por defecto 10">
 										</div> <!-- fin .entrada_n_vars_ag -->
+
+										<span ng-show="n_vars>1000">El tamaño del cromosoma debe ser menor que 1000</span>
+										<span ng-show="n_vars<=2">El tamaño del cromosoma debe ser mayor que 2</span>
 
 										<div class="entrada_valor_min_ag">
 											<label> Valor mínimo </label>
@@ -93,6 +96,8 @@
 											<label> Valor máximo </label>
 											<input type="number" ng-model="max" placeholder="por defecto 32.768">
 										</div> <!-- fin .entrada_valor_max_ag -->
+
+										<span ng-show="min>max">Valor máximo debe ser mayor que el mínimo</span>
 
 									</div> <!-- fin .entrada_datos_defecto_ag -->
 									<div class="entrada_datos_defecto_ag">
@@ -107,11 +112,15 @@
 											<input type="number" ng-model="p_mutation" placeholder="por defecto 0.15">
 										</div> <!-- fin .entrada_p_mutation_ag -->
 
+										<span ng-show="p_mutation<0.0 || p_mutation > 1">Probabilidad entre 0 y 1</span>
+										
 										<div class="entrada_p_crossover_ag">
 											<label> Probabilidad de cruce </label>
 											<input type="number" ng-model="p_crossover" placeholder="por defecto 0.8">
 										</div> <!-- fin .entrada_p_crossover_ag -->
 									
+										<span ng-show="p_crossover<0.0 || p_crossover > 1">Probabilidad entre 0 y 1</span>
+
 									</div> <!-- fin .entrada_datos_defecto_ag -->
 
 									<div class="entrada_datos_defecto_ackley">
@@ -132,7 +141,7 @@
 
 								</div> <!-- fin .entrada_datos_ackley -->
 
-						      	<div class="peticion"> <button class="special" id="boton_peticion"  ng-click="peticionAckley(valueA, valueB, valueC, max_gen, min, max, p_mutation, p_crossover, population_size, n_vars)" >  Realizar algoritmo genético  </button> </div>
+						      	<div class="peticion"> <button ng-class="{ disabled : (min>max || population_size>=10000 || n_vars>1000 || n_vars<=2 || p_mutation<0.0 || p_mutation > 1 || p_crossover<0.0 || p_crossover > 1) }" class="special" id="boton_peticion"  ng-click="peticionAckley(valueA, valueB, valueC, max_gen, min, max, p_mutation, p_crossover, population_size, n_vars)" >  Realizar algoritmo genético  </button> </div>
 						      
 						{% endverbatim %}
 								
@@ -169,10 +178,15 @@
 											<input type="number" ng-model="population_size" placeholder="por defecto 50">
 										</div> <!-- fin .entrada_tam_pobl_ag -->
 
+										<span ng-show="population_size>=10000">Población debe ser menor que 10000</span>
+
 										<div class="entrada_n_vars_ag">
 											<label> Tamaño del cromosoma </label>
 											<input type="number" ng-model="n_vars" placeholder="por defecto 10">
 										</div> <!-- fin .entrada_n_vars_ag -->
+
+										<span ng-show="n_vars>1000">El tamaño del cromosoma debe ser menor que 1000</span>
+										<span ng-show="n_vars<=2">El tamaño del cromosoma debe ser mayor que 2</span>
 
 										<div class="entrada_valor_min_ag">
 											<label> Valor mínimo </label>
@@ -183,6 +197,8 @@
 											<label> Valor máximo </label>
 											<input type="number" ng-model="maxR" placeholder="por defecto 5.12">
 										</div> <!-- fin .entrada_valor_max_ag -->
+
+										<span ng-show="minR>maxR">Valor máximo debe ser mayor que el mínimo</span>
 
 									</div> <!-- fin .entrada_datos_defecto_ag -->
 									<div class="entrada_datos_defecto_ag">
@@ -197,11 +213,15 @@
 											<input type="number" ng-model="p_mutation" placeholder="por defecto 0.15">
 										</div> <!-- fin .entrada_p_mutation_ag -->
 
+										<span ng-show="p_mutation<0.0 || p_mutation > 1">Probabilidad entre 0 y 1</span>
+
 										<div class="entrada_p_crossover_ag">
 											<label> Probabilidad de cruce </label>
 											<input type="number" ng-model="p_crossover" placeholder="por defecto 0.8">
 										</div> <!-- fin .entrada_p_crossover_ag -->
 									
+										<span ng-show="p_crossover<0.0 || p_crossover > 1">Probabilidad entre 0 y 1</span>
+
 									</div> <!-- fin .entrada_datos_defecto_ag -->
 
 									<div class="entrada_datos_defecto_ackley">
@@ -215,7 +235,7 @@
 
 								</div> <!-- fin .entrada_datos_ackley -->
 
-						      	<div class="peticion"> <button class="special" id="boton_peticion"  ng-click="peticionRastrigin(valueARastrigin, max_gen, minR, maxR, p_mutation, p_crossover, population_size, n_vars)" >  Realizar algoritmo genético  </button> </div>
+						      	<div class="peticion"> <button ng-class="{ disabled : (min>max || population_size>=10000 || n_vars>1000 || n_vars<=2 || p_mutation<0.0 || p_mutation > 1 || p_crossover<0.0 || p_crossover > 1) }" class="special" id="boton_peticion"  ng-click="peticionRastrigin(valueARastrigin, max_gen, minR, maxR, p_mutation, p_crossover, population_size, n_vars)" >  Realizar algoritmo genético  </button> </div>
 						      
 						{% endverbatim %}
 								
