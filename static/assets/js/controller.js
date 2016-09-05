@@ -43,7 +43,7 @@ app.controller("myController", function($scope, $http) {
 	
 		$('.icono_espera').css('display','initial'); 
 		$('body').css('opacity','0.5'); 
-		$('#muestra_resultado').html("Procesando el algoritmo, espere para ver los resultados");
+		$('#muestra_resultado').html("<div class='resultado_vacio'>Procesando el algoritmo, espere para ver los resultados </div");
 
 		var datos = {valorA: a, valorB: b, valorC: c, maxgen: max_gen, valorMin: min, valorMax: max, pMutation: p_mutation, pCrossover: p_crossover, populationSize: population_size, nVars: n_vars };
 
@@ -124,7 +124,7 @@ app.controller("myController", function($scope, $http) {
 		
 		$('.icono_espera').css('display','initial'); 
 		$('body').css('opacity','0.5'); 
-		$('#muestra_resultado').html("Procesando el algoritmo, espere para ver los resultados");
+		$('#muestra_resultado').html("<div class='resultado_vacio'>Procesando el algoritmo, espere para ver los resultados </div");
 
 		var datos = {valorARastrigin: ar, maxgen: max_gen, valorMin: min, valorMax: max, pMutation: p_mutation, pCrossover: p_crossover, populationSize: population_size, nVars: n_vars };
 
