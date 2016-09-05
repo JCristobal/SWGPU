@@ -3,31 +3,7 @@ var app = angular.module("myApp", []);
 
 app.controller("myController", function($scope, $http) { 
 
-	$scope.muestra_ackley = function(){
-		$('#serv_ackley').css('display','initial');
-		$('#serv_ackley').css('border-top','2px solid black');
-		$('.container').css('height','100vh');
-		$('#serv_rastrigin').css('display','none');
-
-		$('.fecha_peticion').html("");
-		$('#muestra_resultado').html("Lance un algoritmo para ver sus resultados");
-	}
-
-	$scope.muestra_rastrigin = function(){
-		$('#serv_rastrigin').css('display','initial');
-		$('.container').css('height','100vh');
-		$('#serv_ackley').css('display','none');
-
-		$('.fecha_peticion').html("");
-		$('#muestra_resultado').html("Lance un algoritmo para ver sus resultados");
-	}
-
-
-	$scope.valueA=20;
-	$scope.valueB=0.2;
-	$scope.valueC=2*Math.PI;
-	$scope.valueARastrigin=10;
-
+	// Variables para el algoritmo genético
 	$scope.max_gen=100;
 	$scope.min=-32.768;
 	$scope.max=32.768;
@@ -38,7 +14,34 @@ app.controller("myController", function($scope, $http) {
 	$scope.p_crossover=0.8;
 	$scope.n_vars=10;
 
+	// Variables de las funciones de optimización
+	$scope.valueA=20;
+	$scope.valueB=0.2;
+	$scope.valueC=2*Math.PI;
+	$scope.valueARastrigin=10;
 
+	// Función que despliga el formulario para el algoritmo genético optmizado por la función Ackley
+	$scope.muestra_ackley = function(){
+		$('#serv_ackley').css('display','initial');
+		$('#serv_ackley').css('border-top','2px solid black');
+		$('.container').css('height','100vh');
+		$('#serv_rastrigin').css('display','none');
+
+		$('.fecha_peticion').html("");
+		$('#muestra_resultado').html("<div class='resultado_vacio'> <a href='#menu' class='scrolly'> Lance un algoritmo para ver sus resultados</a> </div>");
+	}
+
+	// Función que despliga el formulario para el algoritmo genético optmizado por la función Rastrigin
+	$scope.muestra_rastrigin = function(){
+		$('#serv_rastrigin').css('display','initial');
+		$('.container').css('height','100vh');
+		$('#serv_ackley').css('display','none');
+
+		$('.fecha_peticion').html("");
+		$('#muestra_resultado').html("<div class='resultado_vacio'> <a href='#menu' class='scrolly'> Lance un algoritmo para ver sus resultados</a> </div>");
+	}
+
+	// Petición al servidor del algoritmo genético optmizado por la función Ackley y maquetado del resultado
     $scope.peticionAckley = function(a, b, c, max_gen, min, max, p_mutation, p_crossover, population_size, n_vars) { 
 	
 		$('.icono_espera').css('display','initial'); 
@@ -85,21 +88,28 @@ app.controller("myController", function($scope, $http) {
 			listaVariables = listaVariables + response.data.calculo.resultado_AG.values[n_vars-1]+"]";
 
 	    	// Mostramos los resultados por pantalla
-			$('#muestra_resultado').html("<strong>"+JSON.stringify(response.data.calculo.nombre).replace(/\"/g,"")+" </strong><br>"
-										+JSON.stringify(response.data.calculo.dispositivo).replace(/\"/g,"").replace("GPU Device 0","Device")+"<br>"
-										+"Performance: "+JSON.stringify(response.data.calculo.datos_computo.performance)+"<br>"
-										+"Time: "+JSON.stringify(response.data.calculo.datos_computo.time)+"<br>"
-										+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
-										+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
-										+"<strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations).replace(/\"/g,"")+"<br>"
+			$('#muestra_resultado').html("<div id='titulo'><strong >"+JSON.stringify(response.data.calculo.nombre).replace(/\"/g,"")+" </strong> </div> <br>"
+										+" <div id='columnas'>"
+										+"<div class='6u$ 12u$(medium)'>"
+										+JSON.stringify(response.data.calculo.dispositivo).replace(/\"/g,"").replace("GPU Device 0","Dispositivo")+"<br>"
+										+"Rendimiento: "+JSON.stringify(response.data.calculo.datos_computo.performance).replace(/\"/g,"")+"<br>"
+										+"Tiempo: "+JSON.stringify(response.data.calculo.datos_computo.time).replace(/\"/g,"")+"<br>"
+										//+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
+										//+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
+										+"<br><strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations).replace(/\"/g,"")+"<br>"
 										+"Valor mínimo: "+JSON.stringify(response.data.calculo.info_input.minimal_value).replace(/\"/g,"")+"<br>"
 										+"Valor máximo: "+JSON.stringify(response.data.calculo.info_input.maximum_value).replace(/\"/g,"")+"<br>"
 										+"Para "+JSON.stringify(response.data.calculo.info_input.n_vars).replace(/\"/g,"")+" variables (tamaño del cromosoma) <br>"
 										+"Probabilidad de mutación: "+(JSON.stringify(response.data.calculo.info_input.p_mutation).replace(/\"/g,""))*100+"% <br>"
 										+"Probabilidad de cruce: "+(JSON.stringify(response.data.calculo.info_input.p_crossover).replace(/\"/g,""))*100+"% <br>"
 										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size).replace(/\"/g,"")+" <br>"
-										+"Con las variables a: "+JSON.stringify(response.data.calculo.info_input.a).replace(/\"/g,"")+" b:"+JSON.stringify(response.data.calculo.info_input.b).replace(/\"/g,"")+" c:"+JSON.stringify(response.data.calculo.info_input.c).replace(/\"/g,"")+" propias de la función de optmización Ackley<br>"
-										+"<br>Tras "+JSON.stringify(response.data.calculo.resultado_AG.generations).replace(/\"/g,"")+" generaciones con el mejor 'fitness' de "+JSON.stringify(response.data.calculo.resultado_AG.best_fitness).replace(/\"/g,"")+" se obtienen como <strong>resultado:</strong> <br>"+variables +"<br>"
+										+"Con las variables propias de la función de optimización <i><strong>Ackley</strong></i>: <br>"
+										+" A: "+JSON.stringify(response.data.calculo.info_input.a).replace(/\"/g,"")
+										+" B: "+JSON.stringify(response.data.calculo.info_input.b).replace(/\"/g,"")
+										+" C: "+JSON.stringify(response.data.calculo.info_input.c).replace(/\"/g,"")+"<br>"
+										+"</div>"
+										+"<div class='6u$ 12u$'> Tras "+JSON.stringify(response.data.calculo.resultado_AG.generations).replace(/\"/g,"")+" generaciones con el mejor 'fitness' de "+JSON.stringify(response.data.calculo.resultado_AG.best_fitness).replace(/\"/g,"")+" se obtienen como <strong>resultado:</strong> <br>"+variables +"<br> </div>"
+										+"</div>"
 										+"<strong>Array con las variables: </strong>"+listaVariables );
 
 
@@ -118,7 +128,7 @@ app.controller("myController", function($scope, $http) {
 
     };
 
-
+	// Petición al servidor del algoritmo genético optmizado por la función Rastrigin y maquetado del resultado
 	$scope.peticionRastrigin = function(ar, max_gen, min, max, p_mutation, p_crossover, population_size, n_vars) { 
 	
 		
@@ -165,22 +175,28 @@ app.controller("myController", function($scope, $http) {
 			listaVariables = listaVariables + response.data.calculo.resultado_AG.values[n_vars-1]+"]";
 
 	    	// Mostramos los resultados por pantalla
-			$('#muestra_resultado').html("<strong>"+JSON.stringify(response.data.calculo.nombre).replace(/\"/g,"")+" </strong><br>"
+			$('#muestra_resultado').html("<div id='titulo'><strong >"+JSON.stringify(response.data.calculo.nombre).replace(/\"/g,"")+" </strong> </div> <br>"
+										+" <div id='columnas'>"
+										+"<div class='6u$ 12u$(medium)'>"
 										+JSON.stringify(response.data.calculo.dispositivo).replace(/\"/g,"").replace("GPU Device 0","Device")+"<br>"
-										+"Performance: "+JSON.stringify(response.data.calculo.datos_computo.performance)+"<br>"
-										+"Time: "+JSON.stringify(response.data.calculo.datos_computo.time)+"<br>"
-										+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
-										+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
-										+"<strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations).replace(/\"/g,"")+"<br>"
+										+"Rendimiento: "+JSON.stringify(response.data.calculo.datos_computo.performance).replace(/\"/g,"")+"<br>"
+										+"Tiempo: "+JSON.stringify(response.data.calculo.datos_computo.time).replace(/\"/g,"")+"<br>"
+										//+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
+										//+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
+										+"<br><strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations).replace(/\"/g,"")+"<br>"
 										+"Valor mínimo: "+JSON.stringify(response.data.calculo.info_input.minimal_value).replace(/\"/g,"")+"<br>"
 										+"Valor máximo: "+JSON.stringify(response.data.calculo.info_input.maximum_value).replace(/\"/g,"")+"<br>"
-										+"Para "+JSON.stringify(response.data.calculo.info_input.n_vars).replace(/\"/g,"")+" variables (tamaño del cromosoma)<br>"
+										+"Para "+JSON.stringify(response.data.calculo.info_input.n_vars).replace(/\"/g,"")+" variables (tamaño del cromosoma) <br>"
 										+"Probabilidad de mutación: "+(JSON.stringify(response.data.calculo.info_input.p_mutation).replace(/\"/g,""))*100+"% <br>"
 										+"Probabilidad de cruce: "+(JSON.stringify(response.data.calculo.info_input.p_crossover).replace(/\"/g,""))*100+"% <br>"
 										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size).replace(/\"/g,"")+" <br>"
-										+"Con la variable A: "+JSON.stringify(response.data.calculo.info_input.A).replace(/\"/g,"")+" propia de la función de optmización Rastrigin<br>"
-										+"<br>Tras "+JSON.stringify(response.data.calculo.resultado_AG.generations).replace(/\"/g,"")+" generaciones con el mejor 'fitness' de "+JSON.stringify(response.data.calculo.resultado_AG.best_fitness).replace(/\"/g,"")+" se obtienen las <strong>variables:</strong> <br>"+variables +"<br>"
+										+"Con la variable propia de la función de optimización <i><strong>Rastrigin</strong></i>: <br>"
+										+" A: "+JSON.stringify(response.data.calculo.info_input.A).replace(/\"/g,"")+"<br>"
+										+"</div>"
+										+"<div class='6u$ 12u$'> Tras "+JSON.stringify(response.data.calculo.resultado_AG.generations).replace(/\"/g,"")+" generaciones con el mejor 'fitness' de "+JSON.stringify(response.data.calculo.resultado_AG.best_fitness).replace(/\"/g,"")+" se obtienen como <strong>resultado:</strong> <br>"+variables +"<br> </div>"
+										+"</div>"
 										+"<strong>Array con las variables: </strong>"+listaVariables );
+
 
 
 			// Ya que se genera una tabla de resultados muy grande, ajustamos el tamaño de la sección

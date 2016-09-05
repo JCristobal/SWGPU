@@ -109,6 +109,13 @@ label{
 	color: black;
 	font-size: 18px;
 }
+#muestra_resultado #titulo{
+	text-align: center;
+}
+#muestra_resultado #columnas{
+	display: flex;
+	padding: 0px 10px;
+}
 #resultados h2{
 	text-align: center;
 }
@@ -116,7 +123,7 @@ label{
 .table-wrapper{
 	width: 50%;
     margin: 10px auto;
-    text-align: center
+    text-align: center;
 }
 .table-wrapper th{
     text-align: center
