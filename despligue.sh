@@ -30,11 +30,11 @@ fi
 
 # Django
 versiondjango=$(python -m django --version)
-if [[ $versiondjango == *'1.10'* ]]; then
+if [[ $versiondjango == *'1.1'* ]]; then
 	echo "[x] Versión de Django correcta"
 	let requisitos+=1
 else
-	echo "[ ] Se necesita la versión de Django 1.10"
+	echo "[ ] Se necesita una versión de Django 1.10 o superior"
 fi
 
 
@@ -95,7 +95,7 @@ else
 
 	if [[ $requisitos == $total_requisitos ]]; then
 	# Se especifica donde se despliega
-	echo 'Introduzca el servidor donde desplegar la aplicación:'
+	echo 'Introduzca la URL donde desplegar la aplicación:'
 	read nombre
 	echo "Desplegar en: "$nombre
 

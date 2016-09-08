@@ -56,7 +56,8 @@ app.controller("myController", function($scope, $http) {
 		  data: datos
 		}).then(function successCallback(response) {
 
-		    console.log(response.data.calculo);
+		    // Se muestra por consola la respuesta en formato JSON
+		    //console.log(response.data.calculo);
 
 		    // calcula la fecha actual para mostrarla por pantalla
 			var hora_pet = new Date();
@@ -94,15 +95,13 @@ app.controller("myController", function($scope, $http) {
 										+JSON.stringify(response.data.calculo.dispositivo).replace(/\"/g,"").replace("GPU Device 0","Dispositivo")+"<br>"
 										+"Rendimiento: "+JSON.stringify(response.data.calculo.datos_computo.performance).replace(/\"/g,"")+"<br>"
 										+"Tiempo: "+JSON.stringify(response.data.calculo.datos_computo.time).replace(/\"/g,"")+"<br>"
-										//+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
-										//+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
 										+"<br><strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations).replace(/\"/g,"")+"<br>"
 										+"Valor mínimo: "+JSON.stringify(response.data.calculo.info_input.minimal_value).replace(/\"/g,"")+"<br>"
 										+"Valor máximo: "+JSON.stringify(response.data.calculo.info_input.maximum_value).replace(/\"/g,"")+"<br>"
 										+"Para "+JSON.stringify(response.data.calculo.info_input.n_vars).replace(/\"/g,"")+" variables (tamaño del cromosoma) <br>"
 										+"Probabilidad de mutación: "+(JSON.stringify(response.data.calculo.info_input.p_mutation).replace(/\"/g,""))*100+"% <br>"
 										+"Probabilidad de cruce: "+(JSON.stringify(response.data.calculo.info_input.p_crossover).replace(/\"/g,""))*100+"% <br>"
-										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size).replace(/\"/g,"")+" <br>"
+										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size).replace(/\"/g,"")+" individuos <br>"
 										+"Con las variables propias de la función de optimización <i><strong>Ackley</strong></i>: <br>"
 										+" A: "+JSON.stringify(response.data.calculo.info_input.a).replace(/\"/g,"")
 										+" B: "+JSON.stringify(response.data.calculo.info_input.b).replace(/\"/g,"")
@@ -144,7 +143,8 @@ app.controller("myController", function($scope, $http) {
 		  data: datos
 		}).then(function successCallback(response) {
 
-		    console.log(response.data.calculo);
+			// Se muestra por consola la respuesta en formato JSON
+		    //console.log(response.data.calculo);
 
 		    // calcula la fecha actual para mostrarla por pantalla
 			var hora_pet = new Date();
@@ -181,15 +181,13 @@ app.controller("myController", function($scope, $http) {
 										+JSON.stringify(response.data.calculo.dispositivo).replace(/\"/g,"").replace("GPU Device 0","Device")+"<br>"
 										+"Rendimiento: "+JSON.stringify(response.data.calculo.datos_computo.performance).replace(/\"/g,"")+"<br>"
 										+"Tiempo: "+JSON.stringify(response.data.calculo.datos_computo.time).replace(/\"/g,"")+"<br>"
-										//+"Size: "+JSON.stringify(response.data.calculo.datos_computo.size)+"<br>"
-										//+"Workgroup size: "+JSON.stringify(response.data.calculo.datos_computo.workgroupSize)+"<br><br>"
 										+"<br><strong>Para la entrada: </strong> <br> Número de generaciones: "+JSON.stringify(response.data.calculo.info_input.n_generations).replace(/\"/g,"")+"<br>"
 										+"Valor mínimo: "+JSON.stringify(response.data.calculo.info_input.minimal_value).replace(/\"/g,"")+"<br>"
 										+"Valor máximo: "+JSON.stringify(response.data.calculo.info_input.maximum_value).replace(/\"/g,"")+"<br>"
 										+"Para "+JSON.stringify(response.data.calculo.info_input.n_vars).replace(/\"/g,"")+" variables (tamaño del cromosoma) <br>"
 										+"Probabilidad de mutación: "+(JSON.stringify(response.data.calculo.info_input.p_mutation).replace(/\"/g,""))*100+"% <br>"
 										+"Probabilidad de cruce: "+(JSON.stringify(response.data.calculo.info_input.p_crossover).replace(/\"/g,""))*100+"% <br>"
-										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size).replace(/\"/g,"")+" <br>"
+										+"Y una población de "+JSON.stringify(response.data.calculo.info_input.population_size).replace(/\"/g,"")+" individuos <br>"
 										+"Con la variable propia de la función de optimización <i><strong>Rastrigin</strong></i>: <br>"
 										+" A: "+JSON.stringify(response.data.calculo.info_input.A).replace(/\"/g,"")+"<br>"
 										+"</div>"
